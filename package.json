@@ -1,0 +1,71 @@
+{
+  "name": "awesome-admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "firebase": "^7.15.5",
+    "prop-types": "^15.7.2",
+    "ra-data-json-server": "^3.3.1",
+    "ra-input-markdown": "^1.1.7",
+    "ra-input-rich-text": "^3.5.5",
+    "ra-language-vietnamese": "^3.0.1",
+    "react": "^16.13.0",
+    "react-admin": "^3.3.1",
+    "react-admin-firebase": "^3.2.1",
+    "react-admin-import-csv": "^0.2.16",
+    "react-dom": "^16.13.0",
+    "react-scripts": "3.4.0",
+    "reactfire": "^2.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "plugin:react/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "rules": {
+      "no-debugger": "off",
+      "no-console": "off",
+      "react/prop-types": "warb"
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "root": true
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

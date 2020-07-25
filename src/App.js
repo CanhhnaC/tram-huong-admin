@@ -14,8 +14,8 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import vietnameseMessages from "./i18n/vi";
 
 // Components
-import products from "./components/products.js";
-import types from "./components/type.js";
+import products from "./components/products";
+import types from "./components/category";
 
 import { PostList, PostEdit, PostCreate } from "./components/posts.js";
 import { EventList, EventEdit, EventCreate } from "./components/events";
@@ -39,25 +39,7 @@ function App() {
       layout={Layout}
     >
       <Resource name="products" options={{ label: "Sản phẩm" }} {...products} />
-
-      <Resource
-        name="events"
-        list={EventList}
-        edit={EventEdit}
-        create={EventCreate}
-        options={{ label: "Sự kiện" }}
-        icon={EventIcon}
-      />
-      <Resource
-        name="posts"
-        list={PostList}
-        edit={PostEdit}
-        create={PostCreate}
-        options={{ label: "Sự kiện" }}
-        icon={BookIcon}
-      />
-
-      <Resource name="types" {...types} />
+      <Resource name="types" options={{ label: "Thể loại" }} {...types} />
     </Admin>
   );
 }

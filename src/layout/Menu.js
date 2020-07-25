@@ -5,9 +5,8 @@ import LabelIcon from "@material-ui/icons/Label";
 import { useMediaQuery, Theme } from "@material-ui/core";
 import { useTranslate, DashboardMenuItem, MenuItemLink } from "react-admin";
 
-import product from "../components/products";
+import products from "../components/products";
 import types from "../components/type";
-import type from "../components/type";
 import SubMenu from "./SubMenu";
 
 const Menu = ({ onMenuClick, dense, logout }) => {
@@ -30,6 +29,7 @@ const Menu = ({ onMenuClick, dense, logout }) => {
         <MenuItemLink
           to={`/products`}
           primaryText={`Sản phẩm`}
+          leftIcon={<products.icon />}
           onClick={onMenuClick}
           sidebarIsOpen={open}
           dense={dense}

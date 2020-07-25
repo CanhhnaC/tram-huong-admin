@@ -15,7 +15,7 @@ const TypeTitle = ({ record }) => {
   return <span>Thể loại: {record ? `"${record.name}"` : ""}</span>;
 };
 
-export const TypeList = (props) => (
+const TypeList = (props) => (
   <List title="Danh sách thể loại" {...props}>
     <Datagrid rowClick="edit">
       <TextField source="name" />
@@ -23,7 +23,7 @@ export const TypeList = (props) => (
   </List>
 );
 
-export const TypeEdit = (props) => (
+const TypeEdit = (props) => (
   <Edit title={<TypeTitle />} {...props}>
     <SimpleForm>
       <TextInput source="name" />
@@ -39,7 +39,7 @@ export const TypeEdit = (props) => (
   </Edit>
 );
 
-export const TypeCreate = (props) => (
+const TypeCreate = (props) => (
   <Create title="Tạo thể loại mới" {...props}>
     <SimpleForm>
       <TextInput source="name" />
@@ -54,3 +54,9 @@ export const TypeCreate = (props) => (
     </SimpleForm>
   </Create>
 );
+
+export default {
+  list: TypeList,
+  create: TypeCreate,
+  edit: TypeEdit,
+};

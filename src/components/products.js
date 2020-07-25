@@ -20,6 +20,7 @@ import {
   ReferenceField,
   ChipField,
 } from "react-admin";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const ProductFilter = (props) => (
   <Filter {...props}>
@@ -39,7 +40,7 @@ const ProductTitle = ({ record }) => {
   return <span>Sự kiện {record ? `"${record.name}"` : ""}</span>;
 };
 
-export const ProductList = (props) => (
+const ProductList = (props) => (
   <List title="Danh sách sản phẩm" filters={<ProductFilter />} {...props}>
     <Datagrid rowClick="edit">
       <TextField source="name" label="Tên sản phẩm" />
@@ -52,7 +53,7 @@ export const ProductList = (props) => (
   </List>
 );
 
-export const ProductEdit = (props) => {
+const ProductEdit = (props) => {
   return (
     <Edit title={<ProductTitle />} {...props}>
       <TabbedForm>
@@ -92,7 +93,7 @@ export const ProductEdit = (props) => {
   );
 };
 
-export const ProductCreate = (props) => (
+const ProductCreate = (props) => (
   <Create title="Thêm sản phẩm mới" {...props}>
     <TabbedForm>
       <FormTab label="Thông tin">
@@ -124,3 +125,10 @@ export const ProductCreate = (props) => (
     </TabbedForm>
   </Create>
 );
+
+export default {
+  list: ProductList,
+  edit: ProductEdit,
+  create: ProductCreate,
+  icon: ShoppingCartIcon,
+};

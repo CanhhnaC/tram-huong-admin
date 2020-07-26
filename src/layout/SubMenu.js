@@ -1,4 +1,4 @@
-import React, { Fragment, ReactElement } from "react";
+import React, { Fragment } from "react";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import List from "@material-ui/core/List";
 import MenuItem from "@material-ui/core/MenuItem";

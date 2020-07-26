@@ -1,6 +1,5 @@
 import * as React from "react";
 import { EditButton, List } from "react-admin";
-import { ListControllerProps } from "ra-core";
 import inflection from "inflection";
 import {
   Grid,
@@ -33,28 +32,33 @@ const useStyles = makeStyles({
 
 const CategoryGrid = (props) => {
   const classes = useStyles(props);
+
   const { data, ids } = props;
   return ids ? (
     <Grid container spacing={2} className={classes.root}>
-      {ids.map((id) => (
-        <Grid key={id} xs={12} sm={6} md={4} lg={3} xl={2} item>
-          <Card>
-            <CardMedia
-              image={`https://marmelab.com/posters/${data[id].name}-1.jpeg`}
-              className={classes.media}
-            />
-            <CardContent className={classes.title}>
-              <Typography variant="h5" component="h2" align="center">
-                {inflection.humanize(data[id].name)}
-              </Typography>
-            </CardContent>
-            <CardActions classes={{ spacing: classes.actionSpacer }}>
-              <LinkToRelatedProducts record={data[id]} />
-              <EditButton basePath="/categories" record={data[id]} />
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
+      {ids.map((id) => {
+        var image = "";
+        typeof data[id].pictures !== "undefined"
+          ? (image = data[id].pictures.src)
+          : (image = "");
+
+        return (
+          <Grid key={id} xs={12} sm={6} md={4} lg={3} xl={2} item>
+            <Card>
+              <CardMedia image={image} className={classes.media} />
+              <CardContent className={classes.title}>
+                <Typography variant="h5" component="h2" align="center">
+                  {inflection.humanize(data[id].name)}
+                </Typography>
+              </CardContent>
+              <CardActions classes={{ spacing: classes.actionSpacer }}>
+                <LinkToRelatedProducts record={data[id]} />
+                <EditButton basePath="/types" record={data[id]} />
+              </CardActions>
+            </Card>
+          </Grid>
+        );
+      })}
     </Grid>
   ) : null;
 };

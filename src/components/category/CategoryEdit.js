@@ -7,26 +7,26 @@ import {
   ReferenceManyField,
   SimpleForm,
   TextInput,
-  useTranslate,
+  ImageInput,
+  ImageField,
 } from "react-admin";
 
 import ThumbnailField from "../products/ThumbnailField";
 import ProductRefField from "../products/ProductRefField";
 
 const CategoryTitle = ({ record }) => {
-  const translate = useTranslate();
-  return record ? (
-    <span>
-      {translate("resources.categories.name", { smart_count: 1 })} &quot;
-      {record.name}&quot;
-    </span>
-  ) : null;
+  return record ? <span>Thể loại: {record.name}</span> : null;
 };
 
 const CategoryEdit = (props) => (
   <Edit title={<CategoryTitle />} {...props}>
     <SimpleForm>
       <TextInput source="name" />
+
+      <ImageInput source="pictures" label="Related pictures" accept="image/*">
+        <ImageField source="src" title="title" />
+      </ImageInput>
+
       <ReferenceManyField
         reference="products"
         target="category_id"

@@ -1,10 +1,10 @@
 import React from "react";
-import { Layout, Sidebar } from "react-admin";
+import { Layout } from "react-admin";
+import { lightTheme } from "./themes";
 
-import Menu from "./Menu";
-
-const CustomSidebar = (props) => <Sidebar {...props} />;
+import AppBar from "./AppBar";
 
 export default (props) => {
-  return <Layout {...props} menu={Menu} />;
+  const theme = lightTheme;
+  return <Layout {...props} appBar={AppBar} theme={theme} />;
 };

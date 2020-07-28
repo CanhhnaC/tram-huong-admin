@@ -7,9 +7,7 @@ const useStyles = makeStyles({
 
 const ThumbnailField = ({ record }) => {
   const classes = useStyles();
-  return record ? (
-    <img src={record.thumbnail} className={classes.root} alt="" />
-  ) : null;
+  return record ? <img src={record.pictures[0].src} className={classes.root} alt="" /> : null;
 };
 
 export default ThumbnailField;

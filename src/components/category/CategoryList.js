@@ -14,6 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import LinkToRelatedProducts from "./LinkToRelatedProducts";
 
+import noImage from "../noImage.jpg";
+
 const useStyles = makeStyles({
   root: {
     marginTop: "1em",
@@ -40,7 +42,7 @@ const CategoryGrid = (props) => {
         var image = "";
         typeof data[id].pictures !== "undefined"
           ? (image = data[id].pictures.src)
-          : (image = "");
+          : (image = noImage);
 
         return (
           <Grid key={id} xs={12} sm={6} md={4} lg={3} xl={2} item>

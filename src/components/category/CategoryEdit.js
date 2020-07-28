@@ -7,8 +7,6 @@ import {
   ReferenceManyField,
   SimpleForm,
   TextInput,
-  ImageInput,
-  ImageField,
 } from "react-admin";
 
 import ThumbnailField from "../products/ThumbnailField";
@@ -23,27 +21,19 @@ const CategoryEdit = (props) => (
     <SimpleForm>
       <TextInput source="name" />
 
-      <ImageInput source="pictures" label="Related pictures" accept="image/*">
-        <ImageField source="src" title="title" />
-      </ImageInput>
-
       <ReferenceManyField
         reference="products"
-        target="category_id"
-        label="resources.categories.fields.products"
+        target="typesId"
+        label="sản phẩm"
         perPage={20}
         fullWidth
       >
         <Datagrid>
           <ThumbnailField />
-          <ProductRefField source="reference" />
-          <NumberField
-            source="price"
-            options={{ style: "currency", currency: "USD" }}
-          />
-          <NumberField source="width" options={{ minimumFractionDigits: 2 }} />
-          <NumberField source="height" options={{ minimumFractionDigits: 2 }} />
-          <NumberField source="stock" />
+          <ProductRefField source="name" />
+          <NumberField source="amount" label="Số lượng" />
+
+          <NumberField source="price" label="Giá tiền" />
           <EditButton />
         </Datagrid>
       </ReferenceManyField>

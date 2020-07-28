@@ -7,60 +7,42 @@ import {
   SelectInput,
   TabbedForm,
   TextInput,
-  required,
+  ArrayInput,
+  SimpleFormIterator,
+  ImageInput,
+  ImageField,
 } from "react-admin";
-import { InputAdornment } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import RichTextInput from "ra-input-rich-text";
 
-export const styles = {
-  price: { width: "7em" },
-  width: { width: "7em" },
-  height: { width: "7em" },
-  stock: { width: "7em" },
-  widthFormGroup: { display: "inline-block" },
-  heightFormGroup: { display: "inline-block", marginLeft: 32 },
-};
+const ProductCreate = (props) => (
+  <Create title="Thêm sản phẩm mới" {...props}>
+    <TabbedForm>
+      <FormTab label="Thông tin">
+        <TextInput source="name" label="Tên sản phẩm" />
+        <NumberInput source="price" label="Giá tiền" />
+        <NumberInput source="amount" label="số lượng còn lại" />
+        <ReferenceInput label="Thể loại" source="typesId" reference="types">
+          <SelectInput source="name" />
+        </ReferenceInput>
+      </FormTab>
 
-const useStyles = makeStyles(styles);
+      <FormTab label="Miêu tả">
+        <ArrayInput source="description">
+          <SimpleFormIterator>
+            <TextInput fullWidth multiline source="content" />
+          </SimpleFormIterator>
+        </ArrayInput>
 
-const ProductCreate = (props) => {
-  const classes = useStyles();
-  return (
-    <Create {...props}>
-      <TabbedForm>
-        <FormTab label="resources.products.tabs.image">
-          <TextInput autoFocus source="image" fullWidth validate={required()} />
-          <TextInput source="thumbnail" fullWidth validate={required()} />
-        </FormTab>
-        <FormTab label="resources.products.tabs.details" path="details">
-          <TextInput source="reference" validate={required()} />
-          <NumberInput
-            source="price"
-            validate={required()}
-            className={classes.price}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">VND</InputAdornment>
-              ),
-            }}
-          />
-          <NumberInput
-            source="amount"
-            validate={required()}
-            className={classes.height}
-            formClassName={classes.heightFormGroup}
-          />
-          <ReferenceInput source="typesId" reference="types" allowEmpty>
-            <SelectInput source="name" />
-          </ReferenceInput>
-        </FormTab>
-        <FormTab label="resources.products.tabs.description" path="description">
-          <RichTextInput source="description" label="" />
-        </FormTab>
-      </TabbedForm>
-    </Create>
-  );
-};
-
+        <ImageInput
+          {...props}
+          source="pictures"
+          multiple={true}
+          label="Related pictures"
+          accept="image/*"
+        >
+          <ImageField source="src" title="title" />
+        </ImageInput>
+      </FormTab>
+    </TabbedForm>
+  </Create>
+);
 export default ProductCreate;

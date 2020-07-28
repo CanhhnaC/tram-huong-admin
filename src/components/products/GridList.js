@@ -3,10 +3,12 @@ import MuiGridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import { makeStyles } from "@material-ui/core/styles";
-import withWidth, { WithWidth } from "@material-ui/core/withWidth";
+import withWidth from "@material-ui/core/withWidth";
 import { linkToRecord } from "ra-core";
 import { NumberField } from "react-admin";
 import { Link } from "react-router-dom";
+
+import noimage from "../noImage.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   price: {
     display: "inline",
     fontSize: "1em",
+    color: "#fccc84",
   },
   link: {
     color: "#fff",
@@ -34,11 +37,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const getColsForWidth = (width) => {
-  if (width === "xs") return 2;
-  if (width === "sm") return 3;
-  if (width === "md") return 4;
-  if (width === "lg") return 5;
-  return 6;
+  if (width === "xs") return 1;
+  if (width === "sm") return 2;
+  if (width === "md") return 3;
+  if (width === "lg") return 4;
+  return 5;
 };
 
 const times = (nbChildren, fn) =>
@@ -76,34 +79,39 @@ const LoadedGridList = ({ ids, data, basePath, width }) => {
         cols={getColsForWidth(width)}
         className={classes.gridList}
       >
-        {ids.map((id) => (
-          <GridListTile
-            component={Link}
-            key={id}
-            to={linkToRecord(basePath, data[id].id)}
-          >
-            <img src={data[id].thumbnail} alt="" />
-            <GridListTileBar
-              className={classes.tileBar}
-              title={data[id].reference}
-              subtitle={
-                <span>
-                  {data[id].width}x{data[id].height},{" "}
-                  <NumberField
-                    className={classes.price}
-                    source="price"
-                    record={data[id]}
-                    color="inherit"
-                    options={{
-                      style: "currency",
-                      currency: "VND",
-                    }}
-                  />
-                </span>
-              }
-            />
-          </GridListTile>
-        ))}
+        {ids.map((id) => {
+          var image = "";
+          typeof data[id].pictures !== "undefined"
+            ? (image = data[id].pictures[0].src)
+            : (image = noimage);
+          return (
+            <GridListTile
+              component={Link}
+              key={id}
+              to={linkToRecord(basePath, data[id].id)}
+            >
+              <img src={image} alt="" />
+              <GridListTileBar
+                className={classes.tileBar}
+                title={data[id].name}
+                subtitle={
+                  <span>
+                    <NumberField
+                      className={classes.price}
+                      source="price"
+                      record={data[id]}
+                      color="inherit"
+                      options={{
+                        style: "currency",
+                        currency: "VND",
+                      }}
+                    />
+                  </span>
+                }
+              />
+            </GridListTile>
+          );
+        })}
       </MuiGridList>
     </div>
   );
